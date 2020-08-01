@@ -21,7 +21,7 @@ class PostgreSQL_Connection:
             self.cursor = self.connection.cursor()
         except:
             self.is_connection = False
-
+        
 # get the list of all tables present in the database
 
     def get_all_tables(self):
@@ -57,6 +57,5 @@ class PostgreSQL_Connection:
             return ""
 
 
-PostgreSQL_Connection('postgres','Test','test123','localhost')
 
 

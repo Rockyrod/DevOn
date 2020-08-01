@@ -1,6 +1,7 @@
 # Import necessary libraries
 from dbconnect import PostgreSQL_Connection
 import pandas as pd 
+import numpy as np
 import time
 
 # 1.Extract the data from given url in csv format and also add a column Processed_time which is nothing but time at the point of scrapping the data
@@ -16,11 +17,14 @@ print(df)
 #         'total_plus' as value
 # Use aggregate function if necessary while performing above operation.
 
-pivoted_data = pd.pivot_table(data=df,index=['Date']) # TO-DO change the code as per requirement aggfunc={'Age':np.mean,'Survived':np.sum})
+pivoted_data = pd.pivot_table(df, index=['Date'],columns=['PTE'],values=['total_plus'], aggfunc=np.max)
 print(pivoted_data)
 
 # 3.Store data into sql database, create a database (test) and table name (test table).
 # TO-DO
+
+
+PostgreSQL_Connection("Postgres","Test","test123","127.0.0.1")
 
 #4.Once stored, please perform CRUD operations on the data in database using python/java code.
 # TO-DO
