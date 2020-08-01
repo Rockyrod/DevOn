@@ -22,13 +22,40 @@ print(pivoted_data)
 
 # 3.Store data into sql database, create a database (test) and table name (test table).
 # TO-DO
+print("Connect Postgres Database")
+dbconnect = PostgreSQL_Connection("Postgres","Test","test123","127.0.0.1")
 
-
-PostgreSQL_Connection("Postgres","Test","test123","127.0.0.1")
+#Store the data into tables
+print("STORE api data into test table database test")
+df.to_sql('test',PostgreSQL_Connection,if_exists='fail')
 
 #4.Once stored, please perform CRUD operations on the data in database using python/java code.
 # TO-DO
 
+print('Please perform CRUD Operations on data')
 
+# create table
+create_table = execute_sql("""CREATE TABLE Table_Name
+                              (ID    INT PRIMARY KEY     NOT NULL,
+                               NAME  TEXT    NOT NULL,
+                               ADRESS""")
+                  
 
+print ('Table created successfully')
 
+# insert data into table
+inserted_table = execute_sql(
+                  """ INSERT INTO Table_Name (column1,column2,column3,column4) \
+                    VALUES (value1,value2,value3,value4)");
+                  
+                    INSERT INTO Table_Name (column1,column2,column3,column4) \
+                    VALUES (value1,value2,value3,value4)");
+
+                    INSERT INTO Table_Name (column1,column2,column3,column4) \
+                    VALUES (value1,value2,value3,value4)"""); 
+
+# select table data
+select_table_data = execute_sql(" SELECT * FROM Table_Name ")
+
+# update table
+updated_table = execute_sql("UPDATE Table_Name set column = value where colum_name(PK) = 1")

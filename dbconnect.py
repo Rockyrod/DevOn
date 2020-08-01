@@ -22,21 +22,13 @@ class PostgreSQL_Connection:
         except:
             self.is_connection = False
         
-# get the list of all tables present in the database
-
-    def get_all_tables(self):
-        self.cursor.execute(""" SELECT table_name FROM information_schema.tables """)
-
-        tables = [table for table in self.cursor.fetchall()]
-        return tables
-
 # get the details of records of the table as dataframe
 
-    def get_all_df(self,table_name):
+    def get_records(self,table_name):
         if self.connection:
             sql_stmt = 'select * from ' + table_name
-            df = pd.read_sql(sql_stmt, con = self.connection)
-            return df
+            records = pd.read_sql(sql_stmt, con = self.connection)
+            return records
         else:
             print("No connection found in PostgreSQL -- try again with correct credential")
             return ""
@@ -45,13 +37,9 @@ class PostgreSQL_Connection:
 
     def execute_SQL(self, inputSQL):
         if self.is_connection:
-            start = time.time()
             results = self.cursor.execute(inputSQL)
             self.connection.commit()
-            end = time.time()
-            print("--- Duration = {} secs ---".format(round((end - start), 1)))
             return results
-
         else:
             print("No connection to PostgreSQL - check user credentials.")
             return ""
