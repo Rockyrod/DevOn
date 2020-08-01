@@ -19,7 +19,7 @@ print(df)
 
 pivoted_data = pd.pivot_table(df, index=['Date'],columns=['PTE'],values=['total_plus'], aggfunc=np.max)
 print(pivoted_data)
-
+pivoted_data.to_csv('pivoted_data.csv',index=False)
 # 3.Store data into sql database, create a database (test) and table name (test table).
 # TO-DO
 print("Connect Postgres Database")
