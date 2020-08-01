@@ -16,3 +16,6 @@
 4. Once stored, please perform CRUD operations on the data in database using python/java code.
 
 ## Solution:
+
+Step1 : Run main.py file
+Note:pivoted_data.csv has been stored as reference for final ouptut

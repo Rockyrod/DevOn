@@ -1,5 +1,5 @@
 # Import necessary libraries
-from dbconnect import PostgreSQL_Connection
+from dbconnect import *
 import pandas as pd 
 import numpy as np
 import time
@@ -24,10 +24,9 @@ pivoted_data.to_csv('pivoted_data.csv',index=False)
 # TO-DO
 print("Connect Postgres Database")
 dbconnect = PostgreSQL_Connection("Postgres","Test","test123","127.0.0.1")
-
 #Store the data into tables
 print("STORE api data into test table database test")
-df.to_sql('test',PostgreSQL_Connection,if_exists='fail')
+#df.to_sql('test',PostgreSQL_Connection,if_exists='fail')
 
 #4.Once stored, please perform CRUD operations on the data in database using python/java code.
 # TO-DO
@@ -35,7 +34,7 @@ df.to_sql('test',PostgreSQL_Connection,if_exists='fail')
 print('Please perform CRUD Operations on data')
 
 # create table
-create_table = execute_sql("""CREATE TABLE Table_Name
+create_table =PostgreSQL_Connection.execute_SQL("""CREATE TABLE Table_Name
                               (ID    INT PRIMARY KEY     NOT NULL,
                                NAME  TEXT    NOT NULL,
                                ADRESS""")
@@ -44,7 +43,7 @@ create_table = execute_sql("""CREATE TABLE Table_Name
 print ('Table created successfully')
 
 # insert data into table
-inserted_table = execute_sql(
+inserted_table = PostgreSQL_Connection.execute_SQL(
                   """ INSERT INTO Table_Name (column1,column2,column3,column4) \
                     VALUES (value1,value2,value3,value4)");
                   
@@ -55,7 +54,7 @@ inserted_table = execute_sql(
                     VALUES (value1,value2,value3,value4)"""); 
 
 # select table data
-select_table_data = execute_sql(" SELECT * FROM Table_Name ")
+select_table_data = PostgreSQL_Connection.execute_SQL(" SELECT * FROM Table_Name ")
 
 # update table
-updated_table = execute_sql("UPDATE Table_Name set column = value where colum_name(PK) = 1")
+updated_table = PostgreSQL_Connection.execute_SQL("UPDATE Table_Name set column = value where colum_name(PK) = 1")
