@@ -26,7 +26,7 @@ print("Connect Postgres Database")
 dbconnect = PostgreSQL_Connection("Postgres","Test","test123","127.0.0.1")
 #Store the data into tables
 print("STORE api data into test table database test")
-#df.to_sql('test',PostgreSQL_Connection,if_exists='fail')
+df.to_sql('test',PostgreSQL_Connection,if_exists='fail')
 
 #4.Once stored, please perform CRUD operations on the data in database using python/java code.
 # TO-DO

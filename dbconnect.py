@@ -4,7 +4,7 @@ import pandas as pd
 import psycopg2
 
 class PostgreSQL_Connection:
-    def __init__(self,user_name,database_name,postgres_pwd,postgres_host):
+    def __init__(self,user_name,database_name,postgres_pwd,postgres_host,port ="5432"):
         self.user      = user_name
         self.database  = database_name
         self.password  = postgres_pwd
@@ -34,6 +34,8 @@ class PostgreSQL_Connection:
             return ""
 
 # Executes a single SQL command
+
+    inputSQL = """ SELECT * From Table_Namec """
 
     def execute_SQL(self, inputSQL):
         if self.is_connection:
